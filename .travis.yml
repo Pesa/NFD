@@ -3,11 +3,9 @@ language: cpp
 os: linux
 dist: bionic
 
-arch:
-  - amd64
-  #- arm64   # Too slow, exceeds time limit
-  #- ppc64le # Fails transport tests
-  #- s390x   # Fails transport tests
+arch: arm64-graviton2
+virt: lxd
+group: edge
 
 env:
   - COMPILER=g++-7
@@ -28,26 +26,6 @@ jobs:
     - env: COMPILER=clang++-10
     - env: COMPILER=clang++-11
     - env: COMPILER=clang++-12
-
-    # macOS
-    - os: osx
-      osx_image: xcode9.4
-      env: # default compiler
-    - os: osx
-      osx_image: xcode10.1
-      env: # default compiler
-    - os: osx
-      osx_image: xcode10.3
-      env: # default compiler
-    - os: osx
-      osx_image: xcode11.3
-      env: # default compiler
-    - os: osx
-      osx_image: xcode11.6
-      env: # default compiler
-    - os: osx
-      osx_image: xcode12
-      env: # default compiler
 
   allow_failures:
     - env: COMPILER=g++-5
